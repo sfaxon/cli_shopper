@@ -23,5 +23,23 @@ describe LineItem do
         line_item.description.should eq("bottle of perfume")
       end
     end
+
+    context "price" do
+      it "should be found" do
+        line_item = LineItem.new("1 book at 12.49")
+        line_item.price.should eq(12.49)
+      end
+      it "should not require decimal for fun" do
+        line_item = LineItem.new("1 bottle of perfume at 18")
+        line_item.price.should eq(18.0)
+      end
+    end
+
+    it "should ignore blank characters at the end of the line" do
+      line_item = LineItem.new("1 bottle of perfume at 18.98  ")
+      line_item.count.should eq(1)
+      line_item.description.should eq("bottle of perfume")
+      line_item.price.should eq(18.98)
+    end
   end
 end
