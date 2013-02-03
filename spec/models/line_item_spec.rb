@@ -38,6 +38,17 @@ describe LineItem do
         line_item.price.should eq(18.0)
       end
     end
+    
+    context "valid?" do
+      it "should return true for known input" do
+        line_item = LineItem.new("1 book at 12.49")
+        line_item.should be_valid
+      end
+      it "should return true for known input" do
+        line_item = LineItem.new("unicorns")
+        line_item.should_not be_valid
+      end
+    end
 
     it "should ignore blank characters at the end of the line" do
       line_item = LineItem.new("1 bottle of perfume at 18.98  ")

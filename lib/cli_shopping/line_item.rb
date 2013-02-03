@@ -1,14 +1,18 @@
 class LineItem
   attr_accessor :count, :description, :price
+  attr_reader :valid
   TAX_CLASSES = [ImportTax, SalesTax]
   def initialize(cli_input)
+    @valid = true
     # RegEx to parse the cli input
     # (\s+) eats white space
-    m = /(?<count>\d+)\s+(?<description>.*)(\s+)(at)(\s+)(?<price>\d+\.*\d*)/.match(cli_input)
+    m = /(?<count>\d+)\s+(?<description>.*)(\s+)(at)(\s+)(?<price>\d+\.*\d*)(.*)/.match(cli_input)
     if m
       @count = m[:count].to_i
       @description = m[:description]
       @price = m[:price].to_f
+    else
+      @valid = false
     end
   end
 
@@ -29,5 +33,13 @@ class LineItem
       returning = returning + tax_klass.on(self)
     end
     returning
+  end
+  
+  def valid?
+    @valid
+  end
+  
+  def inspect
+    "#<LineItem: @count: #{@count}, @descritpion: #{@description}, @price: #{@price}"
   end
 end
