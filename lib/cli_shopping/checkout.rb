@@ -12,7 +12,7 @@ class Checkout
     @shopping_cart.each do |line_item|
       sales_tax = sales_tax + line_item.tax
       total = total + line_item.price_with_tax
-      returning << "#{line_item.count} #{line_item.description}: #{line_item.price_with_tax}"
+      returning << "#{line_item.count} #{line_item.description}: %.2f" % line_item.price_with_tax
     end
     returning << "Sales Taxes: #{sales_tax}"
     returning << "Total: #{total}"
