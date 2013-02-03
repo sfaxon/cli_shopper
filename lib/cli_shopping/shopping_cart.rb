@@ -1,4 +1,5 @@
 class ShoppingCart
+  include Enumerable
   
   # it's a queue! 
   def initialize
@@ -15,5 +16,9 @@ class ShoppingCart
   
   def empty!
     @cart.clear
+  end
+  
+  def each
+    @cart.each { |i| yield i }
   end
 end
