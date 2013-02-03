@@ -18,6 +18,10 @@ class ShoppingCart
     @cart.clear
   end
   
+  def empty?
+    @cart.empty?
+  end
+  
   def each
     @cart.each { |i| yield i }
   end
