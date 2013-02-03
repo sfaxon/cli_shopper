@@ -14,7 +14,11 @@ describe ImportTax do
   end
   
   context '#on' do
-    it "should " do
+    it "should return round tax amount" do
+      line_item = LineItem.new("1 box of imported chocolates at 11.25")
+      ImportTax.on(line_item).should eq(0.6)
+    end
+    it "should return correct tax amount" do
       line_item = LineItem.new("1 imported box of chocolates at 10.00")
       ImportTax.on(line_item).should eq(0.5)
     end
