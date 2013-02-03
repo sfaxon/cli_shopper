@@ -11,6 +11,12 @@ class LineItem
       @price = m[:price].to_f
     end
   end
+
+  # returns formatted version of the description
+  def description
+    return "imported #{@description.gsub('imported ', '')}" if @description.include?("imported ")
+    @description
+  end
   
   def price_with_tax
     price + tax

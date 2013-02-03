@@ -22,6 +22,10 @@ describe LineItem do
         line_item = LineItem.new("1 bottle of perfume at 18.99")
         line_item.description.should eq("bottle of perfume")
       end
+      it "should transform imported" do
+        line_item = LineItem.new("1 box of imported chocolates at 11.25")
+        line_item.description.should eq("imported box of chocolates")
+      end
     end
 
     context "price" do

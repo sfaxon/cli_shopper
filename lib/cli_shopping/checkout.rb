@@ -14,12 +14,11 @@ class Checkout
       total = total + line_item.price_with_tax
       returning << "#{line_item.count} #{line_item.description}: %.2f" % line_item.price_with_tax
     end
-    returning << "Sales Taxes: #{sales_tax}"
-    returning << "Total: #{total}"
+    returning << "Sales Taxes: %.2f" % sales_tax
+    returning << "Total: %.2f" % total
   end
   
-  def print_receipt
-    puts receipt_items.join("\n")
+  def receipt
+    receipt_items.join("\n")
   end
-
 end

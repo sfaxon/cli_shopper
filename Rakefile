@@ -16,8 +16,15 @@ namespace :spec do
     task.pattern = base_path + '/spec/models/**/*_spec.rb'
     puts task.pattern
   end
+  
+  desc "cli_shopping integration"
+  RSpec::Core::RakeTask.new(:integration) do |task|
+    base_path = File.expand_path(File.dirname(__FILE__))
+    task.pattern = base_path + '/spec/integration/**/*_spec.rb'
+    puts task.pattern
+  end
 end
 
-task :spec => ['spec:models']
+task :spec => ['spec:models', 'spec:integration']
 
 task :default => :spec
